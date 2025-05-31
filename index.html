@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ahmed Aloush - Smart Code Solutions</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -31,7 +31,9 @@
                 <span class="glow-text-cyan">Aloush</span>
             </div>
             <div class="menu-toggle">
-                <i class="fas fa-bars"></i>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
             </div>
             <ul class="nav-links">
                 <li class="active"><a href="#home">Home</a></li>
@@ -168,7 +170,7 @@
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="images/project1.png" alt="presentation">
+                        <img src="images/project1.jpg" alt="E-Commerce Platform">
                     </div>
                     <div class="project-content">
                         <h3>presentation for java proj</h3>
@@ -184,7 +186,7 @@
                 
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="images/project2.png" alt="hotel sys">
+                        <img src="images/project2.jpg" alt="Task Management App">
                     </div>
                     <div class="project-content">
                         <h3>hotel managment system</h3>
@@ -199,7 +201,7 @@
                 
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="images/project3.png" alt="game">
+                        <img src="images/project3.jpg" alt="Weather Dashboard">
                     </div>
                     <div class="project-content">
                         <h3>connet 4</h3>
@@ -215,7 +217,7 @@
                 
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="images/project4.png" alt="web app">
+                        <img src="images/project4.jpg" alt="Portfolio Website">
                     </div>
                     <div class="project-content">
                         <h3>Public transportation Website</h3>
@@ -231,7 +233,7 @@
                 
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="images/project5.png" alt="data analysis">
+                        <img src="images/project5.jpg" alt="Social Media Dashboard">
                     </div>
                     <div class="project-content">
                         <h3>data analysis Dashboard</h3>
@@ -247,7 +249,7 @@
                 
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="images/project6.png" alt="ai game solver">
+                        <img src="images/project6.jpg" alt="Mobile Fitness App">
                     </div>
                     <div class="project-content">
                         <h3>8 puzzel solver</h3>
@@ -276,6 +278,17 @@
                 <div class="contact-form">
                     <h3 class="glow-text-cyan">Send Me a Message</h3>
                     
+                    <div class="contact-method-selector">
+                        <div class="contact-method-option active" data-method="whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>WhatsApp</span>
+                        </div>
+                        <div class="contact-method-option" data-method="email">
+                            <i class="fas fa-envelope"></i>
+                            <span>Email</span>
+                        </div>
+                    </div>
+                    
                     <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Name</label>
@@ -294,6 +307,21 @@
                         
                         <button type="submit" class="btn btn-primary">Send Message</button>
                     </form>
+                    
+                    <!-- Rating Tool -->
+                    <div class="rating-container">
+                        <h4 class="rating-title">Rate My Website</h4>
+                        <div class="rating-stars">
+                            <i class="fas fa-star rating-star" data-rating="1"></i>
+                            <i class="fas fa-star rating-star" data-rating="2"></i>
+                            <i class="fas fa-star rating-star" data-rating="3"></i>
+                            <i class="fas fa-star rating-star" data-rating="4"></i>
+                            <i class="fas fa-star rating-star" data-rating="5"></i>
+                        </div>
+                        <div class="rating-feedback"></div>
+                        <button class="rating-submit" disabled>Submit Rating</button>
+                        <div class="rating-thanks">Thank you for your feedback!</div>
+                    </div>
                 </div>
                 
                 <div class="contact-info">
@@ -309,6 +337,9 @@
                     <div class="social-links">
                         <h4>Connect With Me</h4>
                         <div class="social-icons">
+                            <a href="https://www.facebook.com/share/16SQUNNQAw/" class="social-btn facebook" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
                             <a href="https://www.tiktok.com/@ahmedaloush2005" class="social-btn tiktok" aria-label="TikTok">
                                 <i class="fab fa-tiktok"></i>
                             </a>
@@ -317,11 +348,6 @@
                             </a>
                             <a href="https://wa.me/01277576772" class="social-btn whatsapp" aria-label="WhatsApp">
                                 <i class="fab fa-whatsapp"></i>
-                                <a href="https://l.instagram.com/?u=https%3A%2F%2Fwww.facebook.com%2Fshare%2F16SQUNNQAw%2F&e=AT3IafeCK8lCpubX_eNF3yrJob9nkEaM3W-RctoDwYZQoWNT6vMbaKnl2pedPnDUJvfbbS-VCKGdWMmUOJDNNWsg1SlmSWin7AccC-0" class="social-btn facebook" aria-label="Facebook">
-    <i class="fab fa-facebook-f"></i>
-</a>
-
-                                
                             </a>
                             <a href="mailto:ahmedmefhat8@gmail.com" class="social-btn email" aria-label="Email">
                                 <i class="fas fa-envelope"></i>
@@ -340,6 +366,6 @@
     <canvas id="particles-canvas"></canvas>
     <div id="code-snippets"></div>
 
-    <script src="js/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
