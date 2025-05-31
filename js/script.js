@@ -376,7 +376,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Enhanced form submission with validation
+    // Contact Method Selector
+    const contactMethodOptions = document.querySelectorAll('.contact-method-option');
+    let selectedMethod = 'whatsapp'; // Default method
+    
+    contactMethodOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            // Remove active class from all options
+            contactMethodOptions.forEach(opt => opt.classList.remove('active'));
+            
+            // Add active class to clicked option
+            this.classList.add('active');
+            
+            // Update selected method
+            selectedMethod = this.getAttribute('data-method');
+        });
+    });
+    
+    // Enhanced form submission with direct messaging
+    const contactForm = document.getElementById('contactForm');
     
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
@@ -400,12 +418,129 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            // Here you would normally send the form data to a server
-            // For this demo, we'll just show an alert
-            alert(`Thank you ${name}! Your message has been sent.`);
+            // Format message
+            const formattedMessage = `Name: ${name}%0AEmail: ${email}%0A%0A${message}`;
+            
+            // Direct messaging based on selected method
+            if (selectedMethod === 'whatsapp') {
+                // WhatsApp direct message
+                window.open(`https://wa.me/01277576772?text=${formattedMessage}`, '_blank');
+            } else {
+                // Email direct message
+                window.open(`mailto:ahmedmefhat8@gmail.com?subject=Message from ${name}&body=${formattedMessage}`, '_blank');
+            }
             
             // Reset form
             contactForm.reset();
+            
+            // Show success message
+            alert('Your message has been sent successfully!');
+        });
+    }
+    
+    // Rating Tool
+    const ratingStars = document.querySelectorAll('.rating-star');
+    const ratingFeedback = document.querySelector('.rating-feedback');
+    const ratingSubmit = document.querySelector('.rating-submit');
+    const ratingThanks = document.querySelector('.rating-thanks');
+    let currentRating = 0;
+    
+    // Feedback messages based on rating
+    const feedbackMessages = {
+        1: "We're sorry to hear that. How can we improve?",
+        2: "Thanks for your feedback. What could be better?",
+        3: "Thanks for your rating. What would make it excellent?",
+        4: "Great! Thanks for your positive feedback.",
+        5: "Excellent! Thank you for your amazing feedback!"
+    };
+    
+    // Star rating functionality
+    ratingStars.forEach(star => {
+        // Mouseover effect
+        star.addEventListener('mouseover', function() {
+            const rating = parseInt(this.getAttribute('data-rating'));
+            
+            // Highlight stars up to the hovered one
+            ratingStars.forEach(s => {
+                const starRating = parseInt(s.getAttribute('data-rating'));
+                if (starRating <= rating) {
+                    s.classList.add('active');
+                } else {
+                    s.classList.remove('active');
+                }
+            });
+        });
+        
+        // Mouseout effect - revert to current rating
+        star.addEventListener('mouseout', function() {
+            ratingStars.forEach(s => {
+                const starRating = parseInt(s.getAttribute('data-rating'));
+                if (starRating <= currentRating) {
+                    s.classList.add('active');
+                } else {
+                    s.classList.remove('active');
+                }
+            });
+        });
+        
+        // Click to set rating
+        star.addEventListener('click', function() {
+            currentRating = parseInt(this.getAttribute('data-rating'));
+            
+            // Update stars
+            ratingStars.forEach(s => {
+                const starRating = parseInt(s.getAttribute('data-rating'));
+                if (starRating <= currentRating) {
+                    s.classList.add('active');
+                } else {
+                    s.classList.remove('active');
+                }
+            });
+            
+            // Show feedback message
+            ratingFeedback.textContent = feedbackMessages[currentRating];
+            
+            // Enable submit button
+            ratingSubmit.disabled = false;
+        });
+    });
+    
+    // Submit rating
+    if (ratingSubmit) {
+        ratingSubmit.addEventListener('click', function() {
+            if (currentRating > 0) {
+                // Here you would normally send the rating to a server
+                // For this demo, we'll just show a thank you message
+                
+                // Hide stars and submit button
+                document.querySelector('.rating-stars').style.display = 'none';
+                ratingSubmit.style.display = 'none';
+                ratingFeedback.style.display = 'none';
+                
+                // Show thank you message
+                ratingThanks.style.display = 'block';
+                
+                // Reset after 3 seconds
+                setTimeout(() => {
+                    // Reset stars
+                    ratingStars.forEach(s => s.classList.remove('active'));
+                    
+                    // Show stars and submit button again
+                    document.querySelector('.rating-stars').style.display = 'flex';
+                    ratingSubmit.style.display = 'inline-block';
+                    ratingFeedback.style.display = 'block';
+                    ratingFeedback.textContent = '';
+                    
+                    // Hide thank you message
+                    ratingThanks.style.display = 'none';
+                    
+                    // Reset current rating
+                    currentRating = 0;
+                    
+                    // Disable submit button
+                    ratingSubmit.disabled = true;
+                }, 3000);
+            }
         });
     }
     
