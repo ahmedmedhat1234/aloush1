@@ -394,7 +394,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Enhanced form submission with direct messaging
-    const contactForm = document.getElementById('contactForm');
     
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
@@ -591,3 +590,33 @@ style.textContent = `
     }
 }`;
 document.head.appendChild(style);
+const reviewsDisplay = document.getElementById('reviews-display');
+
+function loadReviews() {
+    const reviews = JSON.parse(localStorage.getItem('reviews') || '[]');
+    reviewsDisplay.innerHTML = '';
+    reviews.forEach(r => {
+        const div = document.createElement('div');
+        div.classList.add('rating-container');
+        div.innerHTML = `<strong>${r.name}</strong>: <em>${r.comment}</em> ⭐ ${r.rating}/5`;
+        reviewsDisplay.appendChild(div);
+    });
+}
+
+ratingSubmit.addEventListener('click', function() {
+    if (currentRating > 0) {
+        const name = prompt("your name :");
+        const comment = prompt("your comment ");
+
+        if (name && comment) {
+            const review = { name, comment, rating: currentRating };
+            const reviews = JSON.parse(localStorage.getItem('reviews') || '[]');
+            reviews.push(review);
+            localStorage.setItem('reviews', JSON.stringify(reviews));
+            loadReviews();
+        }
+    }
+});
+
+loadReviews(); 
+
